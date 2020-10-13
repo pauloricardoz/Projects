@@ -1,0 +1,37 @@
+body {
+
+}
+header {
+background-color: seagreen;
+display: flex;
+justify-content: space-between;
+padding: 20px;
+
+}
+.lista-nomes {
+  
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aluno {
+  font-size: 2em;
+}
+
+.numero {
+  font-size: 2em;
+}
+
+div.line {
+  border-bottom-style:solid;
+  border-bottom-color:black;
+  
+  padding-left: 10px ;
+
+  /* border-color: red;
+  border-style: solid;
+  border-width: 1px; */
+}
