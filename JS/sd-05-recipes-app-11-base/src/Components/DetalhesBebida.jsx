@@ -117,10 +117,14 @@ export default function Detalhes(props) {
         <h3 className="subTitle">Instructions:</h3>
         <p className="yellowCampDetalhes" data-testid="instructions">{details.strInstructions}</p>
         <h3 className="subTitle">Recomendações</h3>
-        <div style={{ display: 'flex', flex: 1, flexGrow: 1, flexDirection: 'row' }}>
-          <button onClick={() => setIndexRecom(indexRecom - 1)}>{'<'}</button>
+        <div className="recomendation-container">
+          <div onClick={() => setIndexRecom(indexRecom - 1)} className="recomendation-button">
+            {'<'}
+          </div>
           {ReverseArrayFoto(sugestFood, indexRecom, setIndexRecom, location)}
-          <button onClick={() => setIndexRecom(indexRecom + 1)}>{'>'}</button>
+          <div onClick={() => setIndexRecom(indexRecom + 1)} className="recomendation-button">
+            {'>'}
+          </div>
         </div>
       </div>
       {status === 'done' ? null : (

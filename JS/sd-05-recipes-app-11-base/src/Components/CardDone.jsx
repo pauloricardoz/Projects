@@ -20,12 +20,12 @@ export default function CardDone(props) {
       <div className="buddyCard">
         <div className="textCard">
           {isMeal ? (
-            <p data-testid={`${index}-horizontal-top-text`}>{`${area} - ${category}`}</p>
+            <p data-testid={`${index}-horizontal-top-text`}>{`(${area} - ${category})`}</p>
           ) : (
-            <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
+            <p data-testid={`${index}-horizontal-top-text`}>({alcoholicOrNot})</p>
           )}
-          <ShareOption index={index} copy={copy} item={item} setCopy={setCopy} />
           <HorizontalName item={item} index={index} />
+          <ShareOption index={index} copy={copy} item={item} setCopy={setCopy} />
         </div>
         <div className="feitaCard">
           <span className="feitaCard">Feita em: </span>{' '}

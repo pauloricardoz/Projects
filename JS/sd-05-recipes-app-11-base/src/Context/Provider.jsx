@@ -39,7 +39,6 @@ export function filterComidas(title, optionsValue, searchValue, setReceitas, set
   } else if (optionsValue === 'ingrediente') {
     ApiSearchByMainIngredient(searchValue)
       .then((ListaComidasPorIngrediente) => {
-        console.log(ListaComidasPorIngrediente);
         setReceitas(ListaComidasPorIngrediente);
         noElements(ListaComidasPorIngrediente);
       })

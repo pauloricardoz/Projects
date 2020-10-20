@@ -39,6 +39,20 @@
   padding: 20px;
 }
 
+.recomendation-container {
+  display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
+}
+
+.recomendation-button{
+  background-color: #e07d0d;
+  align-items: center;
+  width: 200px;
+  justify-content: center;
+  display: flex;
+}
+
 .recomendation-card {
   color: white;
   text-decoration: none;

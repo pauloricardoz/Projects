@@ -31,8 +31,13 @@
 }
 
 .textReceita {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   color: black;
   font-size: 14px;
+  font-weight: 500;
   margin: 5px 0;
   text-align: center;
+  justify-content: space-around;
 }

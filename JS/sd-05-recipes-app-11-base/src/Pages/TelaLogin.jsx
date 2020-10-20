@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Logo from '../images/open-baladin-roma.png';
 import '../CSS/TelaLogin.css';
 
@@ -15,38 +15,8 @@ function onclickFuntion(email) {
   if (!localStorage.getItem('cocktailsToken')) localStorage.setItem('cocktailsToken', '1');
   if (!localStorage.getItem('user')) localStorage.setItem('user', JSON.stringify({ email }));
 }
-/*   localStorage.setItem('doneRecipes', [{
-      id: id-da-receita,
-      type: comida-ou-bebida,
-      area: area-da-receita-ou-texto-vazio,
-      category: categoria-da-receita-ou-texto-vazio,
-      alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
-      name: nome-da-receita,
-      image: imagem-da-receita,
-      doneDate: quando-a-receita-foi-concluida,
-      tags: array-de-tags-da-receita-ou-array-vazio
-  }]);
-    localStorage.setItem('favoriteRecipes ', [{
-      id: id-da-receita,
-      type: comida-ou-bebida,
-      area: area-da-receita-ou-texto-vazio,
-      category: categoria-da-receita-ou-texto-vazio,
-      alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
-      name: nome-da-receita,
-      image: imagem-da-receita
-  }]);
-    localStorage.setItem('inProgressRecipes', {
-      cocktails: {
-          id-da-bebida: [lista-de-ingredientes-utilizados],
-          ...
-      },
-      meals: {
-          id-da-comida: [lista-de-ingredientes-utilizados],
-          ...
-      }
-  }); */
 
-export default function Login() {
+export default function Login(props) {
   const [validation, setValidation] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +27,14 @@ export default function Login() {
       setValidation(true);
     }
   }, [email, password]);
-
+  const enterEvent = (e) => {
+    let key = e.which || e.keyCode;
+    if (key === 13 && !validation) {
+      onclickFuntion(email);
+      props.history.push("/comidas")
+      return <Redirect to="/comidas" />;
+    }
+  };
   return (
     <form className="TelaLogin">
       <img src={Logo} alt="logo" className="loginLogo" />
@@ -77,6 +54,7 @@ export default function Login() {
         minLength="7"
         placeholder="Senha"
         onChange={(e) => setPassword(e.target.value)}
+        onKeyUp={(e) => enterEvent(e)}
         required
       />
       <Link to="/comidas">

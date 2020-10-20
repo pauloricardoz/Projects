@@ -44,7 +44,7 @@ function addFavority(receita, setFavority) {
     setFavority(false);
     return localStorage.setItem(
       'favoriteRecipes',
-      JSON.stringify(oldFav.filter((el) => el.id !== receita.id)),
+      JSON.stringify(oldFav.filter((el) => el.id !== receita.id))
     );
   }
   const temp = [...oldFav, receita];
@@ -86,21 +86,16 @@ export function loopIndex(indexArr, IndexAtual) {
 function ReverseArrayFoto(sugestDrink, indexRecom, setIndexRecom, location) {
   if (indexRecom < 0) {
     setIndexRecom(5);
-    return (
-      sugestDrink
-        /* .filter((_, index) => index === 5 % 6 || loopIndex(index - 1, 5))
-      .reverse() */
-        .map((item, index) => (
-          <Card
-            key={item.strDrink}
-            title={item.strDrink}
-            index={index}
-            source={item.strDrinkThumb}
-            show={indexRecom}
-            id={item.idDrink}
-          />
-        ))
-    );
+    return sugestDrink.map((item, index) => (
+      <Card
+        key={item.strDrink}
+        title={item.strDrink}
+        index={index}
+        source={item.strDrinkThumb}
+        show={indexRecom}
+        id={item.idDrink}
+      />
+    ));
   }
   return (
     sugestDrink
@@ -176,8 +171,14 @@ export default function Detalhes(props) {
   const [favority, setFavority] = useState(false);
   const [copy, copiador] = useState(false);
   const {
-    details, favoriteRecipes, status, indexRecom,
-    setIndexRecom, sugestDrink, idDaReceita, location,
+    details,
+    favoriteRecipes,
+    status,
+    indexRecom,
+    setIndexRecom,
+    sugestDrink,
+    idDaReceita,
+    location,
   } = props;
   useEffect(() => setFavority(favoriteRecipes), []);
   const novosIngredientes = funcIngredients([], details);
@@ -202,10 +203,14 @@ export default function Detalhes(props) {
         <h3 className="subTitle">Video</h3>
         <ReactPlayer url={details.strYoutube} data-testid="video" width="100%" height="100%" />
         <h3 className="subTitle">Recomendações</h3>
-        <div style={{ display: 'flex', flex: 1, flexGrow: 1, flexDirection: 'row' }}>
-          <button onClick={() => setIndexRecom(indexRecom - 1)}>{'<'}</button>
+        <div className="recomendation-container">
+          <div onClick={() => setIndexRecom(indexRecom - 1)} className="recomendation-button">
+            {'<'}
+          </div>
           {ReverseArrayFoto(sugestDrink, indexRecom, setIndexRecom, location)}
-          <button onClick={() => setIndexRecom(indexRecom + 1)}>{'>'}</button>
+          <div onClick={() => setIndexRecom(indexRecom + 1)} className="recomendation-button">
+            {'>'}
+          </div>
         </div>
       </div>
       {status === 'done' ? null : (

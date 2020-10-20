@@ -57,10 +57,19 @@
 
 /* card */
 .receitaCard {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 10%;
   margin: 5% 0;
   padding-bottom: 3%;
+
+
+}
+
+.buddyCard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
 }
 
 .horizontal-image {
@@ -74,6 +83,7 @@
   display: flex;
   justify-content: space-around;
   margin: 0;
+  width: 80%;
 }
 
 .iconCard {

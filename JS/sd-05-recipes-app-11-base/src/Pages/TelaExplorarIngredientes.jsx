@@ -15,11 +15,9 @@ function startList(tipo, setLista) {
       if (!resposta) {
         return null;
       }
-      console.log(resposta);
       return setLista(resposta);
     });
   } else {
-    console.log('bebidas');
     searchCockTailByListOfIngredient().then((resposta) => {
       if (!resposta) {
         return null;

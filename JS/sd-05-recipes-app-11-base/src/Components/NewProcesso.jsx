@@ -43,8 +43,10 @@ function funcLinks(details, favority, setFavority, copiador, copy) {
       </h1>
       <Link onClick={() => convertFavorite(details, setFavority)}>
         <img
-          src={favority ? blackHeart : whiteHeart} alt="like icon"
-          className="icon" data-testid="favorite-btn"
+          src={favority ? blackHeart : whiteHeart}
+          alt="like icon"
+          className="icon"
+          data-testid="favorite-btn"
         />
       </Link>
       <Link
@@ -83,7 +85,8 @@ export function funcIngredients(ingredients, detalhes) {
   const used = teste(detalhes);
   for (let i = 1; i < 20; i += 1) {
     if (
-      detalhes[`strIngredient${i}`] !== null && detalhes[`strIngredient${i}`] !== '' &&
+      detalhes[`strIngredient${i}`] !== null &&
+      detalhes[`strIngredient${i}`] !== '' &&
       detalhes[`strIngredient${i}`] !== undefined
     ) {
       ingredients.push({
@@ -111,7 +114,6 @@ function updateUsedIngredients(details, setDone, novosIngredientes) {
 function changeStorage(details, final) {
   const { type, chave } = createBasicLocal(details);
   const localSAtual = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  console.log(localSAtual[chave][details[`id${type}`]]);
   const elements = document.getElementsByClassName('ingredient-step');
   localSAtual[chave][details[`id${type}`]] = [];
 
@@ -135,7 +137,9 @@ function InputCheck(props) {
   if (!item.checked) {
     return (
       <input
-        type="checkbox" className="ingredient-step" id={item.ingrediente}
+        type="checkbox"
+        className="ingredient-step"
+        id={item.ingrediente}
         onClick={() => {
           action(details, setDone);
         }}
@@ -144,10 +148,13 @@ function InputCheck(props) {
   }
   return (
     <input
-      type="checkbox" className="ingredient-step" id={item.ingrediente}
+      type="checkbox"
+      className="ingredient-step"
+      id={item.ingrediente}
       onClick={() => {
         action(details, setDone);
-      }} checked
+      }}
+      checked
     />
   );
 }
@@ -169,7 +176,7 @@ function moveToDone(details) {
   }
   const doneAtual = JSON.parse(localStorage.getItem('doneRecipes'));
   doneAtual.push(temp);
-  console.log('Local Storage', doneAtual);
+  
 
   localStorage.setItem('doneRecipes', JSON.stringify(doneAtual));
 }
@@ -179,8 +186,10 @@ function Botao(props) {
   return (
     <Link to={'/receitas-feitas'}>
       <button
-        data-testid="finish-recipe-btn" className="finish-recipe-btn"
-        disabled={!habilita} onClick={() => moveToDone(details)}
+        data-testid="finish-recipe-btn"
+        className="finish-recipe-btn"
+        disabled={!habilita}
+        onClick={() => moveToDone(details)}
       >
         Finalizar receita
       </button>
@@ -195,7 +204,6 @@ Botao.propTypes = {
 export default function Detalhes(props) {
   const { details, favoriteRecipes } = props;
   const [used, setDone] = useState(false);
-  console.log(used);
   const [copy, copiador] = useState(false);
   const [favority, setFavority] = useState(false);
   useEffect(() => setFavority(favoriteRecipes), []);
@@ -215,10 +223,13 @@ export default function Detalhes(props) {
           {novosIngredientes.map((item) => (
             <div data-testid="0-ingredient-step">
               <InputCheck
-                item={item} used={usedIngredients} action={changeStorage}
-                details={details} setDone={setDone}
+                item={item}
+                /* used={usedIngredients} */
+                action={changeStorage}
+                details={details}
+                setDone={setDone}
               />
-              <label htmlFor={item.ingrediente} className={item.checked ? 'corta' : ''}>
+              <label htmlFor={item.ingrediente}>
                 {item.ingrediente}- {item.quantidade}
               </label>
             </div>

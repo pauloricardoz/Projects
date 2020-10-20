@@ -32,11 +32,11 @@ export default function HeaderBusca(props) {
       <div data-testid="page-title" className="Bar-Busca-Header-text">
         <span>{newTitle}</span>
       </div>
-      {!showTop ? (
+      <div style={{visibility: showTop?'hidden':'visible'}} className="Top-Btn">
         <Link onClick={() => setShowSearch(!showSearch)} className="Top-Btn">
           <img src={searchLogo} alt="Search Logo" data-testid="search-top-btn" />
         </Link>
-      ) : null}
+      </div>
     </div>
   );
 }
