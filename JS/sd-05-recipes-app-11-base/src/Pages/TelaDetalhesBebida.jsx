@@ -9,6 +9,7 @@ import context from '../Context/ReceitasContext';
 import DetalhesBebida from '../Components/DetalhesBebida';
 import { updateStatus } from './TelaDetalhesComida';
 import '../CSS/TelaDetalhes.css';
+import { Link } from 'react-router-dom';
 
 export default function TelaDetalhesBebida(props) {
   const { sugestFood } = useContext(context);
@@ -27,17 +28,22 @@ export default function TelaDetalhesBebida(props) {
     return <h1>Carregando</h1>;
   }
   return (
-    <DetalhesBebida
-      details={details}
-      favoriteRecipes={favorite}
-      status={status}
-      indexRecom={indexRecom}
-      setIndexRecom={setIndexRecom}
-      sugestFood={sugestFood}
-      idDaReceita={idDaReceita}
-      match={props.match}
-      location={props.location}
-    />
+    <div>
+      <Link onClick={() => props.history.goBack()} className="voltarLink">
+        VOLTAR
+      </Link>
+      <DetalhesBebida
+        details={details}
+        favoriteRecipes={favorite}
+        status={status}
+        indexRecom={indexRecom}
+        setIndexRecom={setIndexRecom}
+        sugestFood={sugestFood}
+        idDaReceita={idDaReceita}
+        match={props.match}
+        location={props.location}
+      />
+    </div>
   );
 }
 

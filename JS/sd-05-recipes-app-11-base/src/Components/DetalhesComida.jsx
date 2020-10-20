@@ -148,15 +148,18 @@ function funcLinks(details, favority, setFavority, copiador, copy) {
           data-testid="favorite-btn"
         />
       </Link>
-      <Link
-        onClick={() => {
-          copiador(true);
-          CopyURL();
-        }}
-      >
-        <img src={shareIcon} alt="like icon" className="icon" data-testid={'share-btn'} />
-      </Link>
-      {copy ? <span>Link copiado!</span> : null}
+
+      <div className="shareDescripiton">
+        <Link
+          onClick={() => {
+            copiador(true);
+            CopyURL();
+          }}
+        >
+          <img src={shareIcon} alt="like icon" className="icon" data-testid={'share-btn'} />
+        </Link>
+        {copy ? <span>Link copiado!</span> : null}
+      </div>
     </div>
   );
 }

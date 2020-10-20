@@ -16,7 +16,9 @@ import { funcIngredients, convertFavorite, CopyURL } from './DetalhesComida';
 function fotoPrincipal(details) {
   return (
     <img
-      src={details.strDrinkThumb} alt={details.strDrink} className="recipe-photo"
+      src={details.strDrinkThumb}
+      alt={details.strDrink}
+      className="recipe-photo"
       data-testid="recipe-photo"
     />
   );
@@ -75,15 +77,18 @@ function funcLinks(details, favority, setFavority, copy, copiador) {
           data-testid="favorite-btn"
         />
       </Link>
-      <Link
-        onClick={() => {
-          copiador(true);
-          CopyURL();
-        }}
-      >
-        <img src={shareIcon} alt="like icon" className="icon" data-testid={'share-btn'} />
-      </Link>
-      {copy ? <span>Link copiado!</span> : null}
+      <div className="shareDescripiton">
+        <Link
+          onClick={() => {
+            copiador(true);
+            CopyURL();
+          }}
+          className="shareDescripiton"
+        >
+          <img src={shareIcon} alt="like icon" className="icon" data-testid={'share-btn'} />
+        </Link>
+        {copy ? <span>Link copiado!</span> : null}
+      </div>
     </div>
   );
 }
@@ -92,8 +97,14 @@ export default function Detalhes(props) {
   const [favority, setFavority] = useState(false);
   const [copy, copiador] = useState(false);
   const {
-    details, favoriteRecipes, status, indexRecom, setIndexRecom,
-    sugestFood, idDaReceita, location,
+    details,
+    favoriteRecipes,
+    status,
+    indexRecom,
+    setIndexRecom,
+    sugestFood,
+    idDaReceita,
+    location,
   } = props;
   useEffect(() => {
     setFavority(favoriteRecipes);
@@ -106,16 +117,21 @@ export default function Detalhes(props) {
       <div className="DetelhesBuddy">
         {funcLinks(details, favority, setFavority, copy, copiador)}
         <h5 className="recipe-category" data-testid="recipe-category">
-          {`${details.strCategory}-${Alcoholic}`}</h5>
+          {`${details.strCategory}-${Alcoholic}`}
+        </h5>
         <h3 className="subTitle">Ingredients</h3>
-        <ul className="yellowCampDetalhes"> {ingredientes.map((item, index) => (
-          <li key={item.ingrediente} data-testid={`${index}-ingredient-name-and-measure`}>
-            {item.ingrediente}- {item.quantidade}
-          </li>
-        ))}
+        <ul className="yellowCampDetalhes">
+          {' '}
+          {ingredientes.map((item, index) => (
+            <li key={item.ingrediente} data-testid={`${index}-ingredient-name-and-measure`}>
+              {item.ingrediente}- {item.quantidade}
+            </li>
+          ))}
         </ul>
         <h3 className="subTitle">Instructions:</h3>
-        <p className="yellowCampDetalhes" data-testid="instructions">{details.strInstructions}</p>
+        <p className="yellowCampDetalhes" data-testid="instructions">
+          {details.strInstructions}
+        </p>
         <h3 className="subTitle">Recomendações</h3>
         <div className="recomendation-container">
           <div onClick={() => setIndexRecom(indexRecom - 1)} className="recomendation-button">

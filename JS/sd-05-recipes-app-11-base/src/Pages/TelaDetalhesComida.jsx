@@ -4,6 +4,7 @@ import { searchMealById } from '../Services/ApiComida';
 import context from '../Context/ReceitasContext';
 import DetalhesComida from '../Components/DetalhesComida';
 import '../CSS/TelaDetalhes.css';
+import { Link } from 'react-router-dom';
 
 export function done(setStatus, id) {
   let doneVar = localStorage.getItem('doneRecipes');
@@ -65,16 +66,19 @@ export default function TelaDetalhesComida(props) {
     return <h1>Carregando</h1>;
   }
   return (
-    <DetalhesComida
-      details={details}
-      favoriteRecipes={favorite}
-      status={status}
-      indexRecom={indexRecom}
-      setIndexRecom={setIndexRecom}
-      sugestDrink={sugestDrink}
-      idDaReceita={idDaReceita}
-      location={props.location}
-    />
+    <div>
+      <Link onClick={()=>props.history.goBack()} className="voltarLink">VOLTAR</Link>
+      <DetalhesComida
+        details={details}
+        favoriteRecipes={favorite}
+        status={status}
+        indexRecom={indexRecom}
+        setIndexRecom={setIndexRecom}
+        sugestDrink={sugestDrink}
+        idDaReceita={idDaReceita}
+        location={props.location}
+      />
+    </div>
   );
 }
 TelaDetalhesComida.propTypes = {
